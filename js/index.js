@@ -29,8 +29,11 @@ function create()
     const map = this.make.tilemap({ key: "map" });
 
     const tiles = map.addTilesetImage("tilemap", "tiles");
+    
     const backgroundLayer = map.createStaticLayer("belowPlayer", tiles, 0, 0);
+
     const tvLayer = map.createStaticLayer("tvLayer", tiles, 0, 0);
+    tvLayer.setCollisionByProperty({ collides: true });
 }
 
 function update()
