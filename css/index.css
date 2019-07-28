@@ -1,0 +1,11 @@
+body {
+    margin: 0;
+    background: #000;
+}
+#game-container {
+    position:relative;
+    left: 200px;
+    top:50px;
+    width: 384;
+    height: 256;
+}
