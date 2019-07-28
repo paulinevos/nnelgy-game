@@ -13,39 +13,8 @@
             margin: 0 auto;
         }
     </style>
+    <script src="js/index.js"></script>
 </head>
 <body>
-
-<script type="text/javascript"> 
-    var config = {
-        type: Phaser.AUTO,
-        width: 1200,
-        height: 600,
-        physics: {
-            default: 'arcade',
-            arcade: {debug: true}
-        },
-        scene: {
-            preload: preload,
-            create: create,
-            update: update,
-        }
-    };
-
-    var game = new Phaser.Game(config);
-    var walls;
-    var floor;
-
-    function preload() 
-    {
-    }
-
-    function create()
-    {
-    }
-
-    function update()
-    {
-        // TODO
-    }
-</script>
+    <div id="game-container"></div>
+</body>
