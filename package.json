@@ -1,0 +1,23 @@
+{
+  "name": "nnelgy-game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paulinevos/nnelgy-game.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/paulinevos/nnelgy-game/issues"
+  },
+  "homepage": "https://github.com/paulinevos/nnelgy-game#readme",
+  "dependencies": {
+    "phaser": "^3.19.0",
+    "webpack": "^4.39.1"
+  }
+}
