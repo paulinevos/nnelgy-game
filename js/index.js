@@ -6,14 +6,16 @@ var config = {
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: {y: 0}
+            gravity: {y: 0},
+            // debug: true,
         }
     },
     scene: {
         preload: preload,
         create: create,
         update: update,
-    }   
+    },
+
 };
 
 let game = new Phaser.Game(config);
@@ -24,22 +26,32 @@ let speed;
 function preload() 
 {
     this.load.image("tiles", "assets/images/tilemap.png");
-    this.load.image("player", "assets/images/sprite.png");
     this.load.tilemapTiledJSON("map", "assets/tilemap/tilemap.json");
+
+    this.load.image("player", "assets/images/sprite.png");
+
 }
 
 function create()
 {
     const map = this.make.tilemap({ key: "map" });
-    const tiles = map.addTilesetImage("tilemap", "tiles");
+    const tileset = map.addTilesetImage("Living room", "tiles");
+    const spawnPoint = map.findObject("Objects", obj => obj.name === "spawnPoint");
+    const backgroundLayer = map.createStaticLayer("belowPlayer", tileset, 0, 0);
+    const abovePlayer = map.createStaticLayer("abovePlayer", tileset, 0, 0);
 
-    const backgroundLayer = map.createStaticLayer("belowPlayer", tiles, 0, 0);
-    const tvLayer = map.createStaticLayer("tvLayer", tiles, 0, 0);
-    tvLayer.setCollisionByProperty({ collides: true });
+    backgroundLayer.setCollisionByProperty({ collides: true });
+    abovePlayer.setCollisionByProperty({ collides: true });
 
-    player = this.physics.add.sprite(16, 64, "player");
+    player = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, "player")
+        .setSize(16, 32);
+
     player.setCollideWorldBounds(true);
-    this.physics.add.collider(player, tvLayer);
+
+    this.physics.add.collider(player, backgroundLayer);
+    this.physics.add.collider(player, abovePlayer);
+
+    abovePlayer.setDepth(10);
 
     cursors = this.input.keyboard.createCursorKeys();
     speed = 100;
@@ -57,13 +69,13 @@ function update()
         player.body.setVelocityX(100);
     }
 
-    // Vertical movement
+    // // Vertical movement
     if (cursors.up.isDown) {
         player.body.setVelocityY(-100);
     } else if (cursors.down.isDown) {
         player.body.setVelocityY(100);
     }
 
-    // Normalize and scale the velocity so that player can't move faster along a diagonal
+    // // Normalize and scale the velocity so that player can't move faster along a diagonal
     player.body.velocity.normalize().scale(speed);
 }
