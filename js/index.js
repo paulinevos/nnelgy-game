@@ -76,6 +76,10 @@ function update()
         player.body.setVelocityY(100);
     }
 
+    if (! player.body.touching.none) {
+        console.log(player.body.touching);
+    }
+
     // // Normalize and scale the velocity so that player can't move faster along a diagonal
     player.body.velocity.normalize().scale(speed);
 }

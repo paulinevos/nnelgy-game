@@ -30,6 +30,45 @@
                  "width":0,
                  "x":56.5,
                  "y":199.5
+                }, 
+                {
+                 "height":0,
+                 "id":2,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":146,
+                 "y":-74
+                }, 
+                {
+                 "height":27,
+                 "id":3,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":30,
+                 "x":145,
+                 "y":97.5
+                }, 
+                {
+                 "height":37.5,
+                 "id":8,
+                 "name":"tvCollider",
+                 "properties":[
+                        {
+                         "name":"collide",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":38.5,
+                 "x":140.5,
+                 "y":92.5
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -51,7 +90,7 @@
          "y":0
         }],
  "nextlayerid":16,
- "nextobjectid":2,
+ "nextobjectid":9,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.4",
