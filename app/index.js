@@ -1,3 +1,5 @@
+import Phaser from 'phaser';
+
 var config = {
     type: Phaser.AUTO,
     width: 384,
@@ -41,9 +43,6 @@ function create()
     const spawnPoint = map.findObject("Objects", obj => obj.name === "spawnPoint");
     const television = map.findObject("Objects", obj => obj.name === "television");
 
-    objects = map.getObjectLayer('Objects');
-    console.log(objects);
-
     const backgroundLayer = map.createStaticLayer("belowPlayer", tileset, 0, 0);
     const abovePlayer = map.createStaticLayer("abovePlayer", tileset, 0, 0);
 
@@ -57,8 +56,6 @@ function create()
 
     this.physics.add.collider(player, backgroundLayer);
     this.physics.add.collider(player, abovePlayer);
-
-    this.physics.add.overlap(player, objects, handleOverlap, null, this);
 
     abovePlayer.setDepth(10);
 
