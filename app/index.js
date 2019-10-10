@@ -1,3 +1,5 @@
+import Phaser from 'phaser';
+
 var config = {
     type: Phaser.AUTO,
     width: 384,
@@ -7,7 +9,7 @@ var config = {
         default: 'arcade',
         arcade: {
             gravity: {y: 0},
-            // debug: true,
+            debug: true,
         }
     },
     scene: {
@@ -22,6 +24,7 @@ let game = new Phaser.Game(config);
 let player;
 let cursors;
 let speed;
+let television;
 
 function preload() 
 {
@@ -29,14 +32,17 @@ function preload()
     this.load.tilemapTiledJSON("map", "assets/tilemap/tilemap.json");
 
     this.load.image("player", "assets/images/sprite.png");
-
+    this.load.image("halo", "assets/images/transparent.png");
 }
 
 function create()
 {
     const map = this.make.tilemap({ key: "map" });
     const tileset = map.addTilesetImage("Living room", "tiles");
+
     const spawnPoint = map.findObject("Objects", obj => obj.name === "spawnPoint");
+    const television = map.findObject("Objects", obj => obj.name === "television");
+
     const backgroundLayer = map.createStaticLayer("belowPlayer", tileset, 0, 0);
     const abovePlayer = map.createStaticLayer("abovePlayer", tileset, 0, 0);
 
@@ -57,8 +63,14 @@ function create()
     speed = 100;
 }
 
-function update()
+function handleOverlap(player, object)
 {
+    console.log(object);
+}
+
+function update()
+{    
+    this.physics.overlap(player, television, handleOverlap, null, this);
     // Stop any previous movement from the last frame
     player.body.setVelocity(0);
 
@@ -78,4 +90,9 @@ function update()
 
     // // Normalize and scale the velocity so that player can't move faster along a diagonal
     player.body.velocity.normalize().scale(speed);
+}
+
+function checkNear(chkObject)
+{
+    console.log(chkObject, 'is near')
 }
